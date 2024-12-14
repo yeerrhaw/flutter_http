@@ -13,5 +13,13 @@ class Users {
     required this.avatar,
   });
 
-  static fromJson(data) {}
+  factory Users.fromJson(Map<String, dynamic> json) {
+    return Users(
+      id: json['id'],
+      email: json['email'],
+      first_name: json['first_name'],
+      last_name: json['last_name'],
+      avatar: json['avatar'],
+    );
+  }
 }

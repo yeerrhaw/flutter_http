@@ -1,4 +1,3 @@
-import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -12,7 +11,7 @@ Future<List<Users>> fetchUserList() async {
   if (response.statusCode == 200) {
     Map<String, dynamic> map = json.decode(response.body);
     List<dynamic> data = map['data'];
-    return data.map((data) => Users.fromJson(data)).toList();
+    return data.map<Users>((data) => Users.fromJson(data)).toList();
   } else {
     throw Exception('Failed to load user data');
   }
@@ -26,15 +25,17 @@ class AllData extends StatefulWidget {
 }
 
 class _AllDataState extends State<AllData> {
-  
+  late Future<List<Users>> fetchUserListAcc;
+
   @override
   void initState() {
     fetchUserListAcc = fetchUserList();
     super.initState();
   }
-  buildList(BuildContext context, List<Users> fetchData){
+  
+  buildList(BuildContext context, List<Users> fetchList){
     return ListView.builder(
-      itemCount: fetchData.length,
+      itemCount: fetchList.length,
       itemBuilder: (context, int currentIndex){
         return buildColumn(fetchList[currentIndex], context);
       },
@@ -44,16 +45,17 @@ class _AllDataState extends State<AllData> {
   buildColumn(Users fetchList, BuildContext context){
     return Card(
       child: ListTile(
-        leading: CircleAvatar(
+        leading: const CircleAvatar(
           radius: 30,
           backgroundImage: NetworkImage('image.url'),
         ),
         title: Text('${fetchList.first_name} ${fetchList.last_name}'),
-        subtitle: Text('fetchList.email'),
+        subtitle: const Text('fetchList.email'),
       ),
-    )
+    );
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
