@@ -50,7 +50,7 @@ class _AllDataState extends State<AllData> {
           backgroundImage: NetworkImage(fetchList.avatar),
         ),
         title: Text('${fetchList.first_name} ${fetchList.last_name}'),
-        subtitle: const Text('fetchList.email'),
+        subtitle: Text(fetchList.email),
       ),
     );
   }
