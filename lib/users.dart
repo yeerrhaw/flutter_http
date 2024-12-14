@@ -12,4 +12,6 @@ class Users {
     required this.last_name,
     required this.avatar,
   });
+
+  static fromJson(data) {}
 }
