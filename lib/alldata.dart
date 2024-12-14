@@ -14,9 +14,13 @@ class _AllDataState extends State<AllData> {
       appBar: AppBar(
         title: const Text('Fetching Data from Internet'),
       ),
-      body: const Center(
-        child: Listview(
-          chi
+      body: Center(
+        child: ListView(
+          children: [
+            Column(
+              children: [],
+            )
+          ]
         ),
       ),
     );
