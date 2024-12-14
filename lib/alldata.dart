@@ -32,22 +32,22 @@ class _AllDataState extends State<AllData> {
     fetchUserListAcc = fetchUserList();
     super.initState();
   }
-  
-  buildList(BuildContext context, List<Users> fetchList){
+
+  buildList(BuildContext context, List<Users> fetchList) {
     return ListView.builder(
       itemCount: fetchList.length,
-      itemBuilder: (context, int currentIndex){
+      itemBuilder: (context, int currentIndex) {
         return buildColumn(fetchList[currentIndex], context);
       },
     );
   }
 
-  buildColumn(Users fetchList, BuildContext context){
+  buildColumn(Users fetchList, BuildContext context) {
     return Card(
       child: ListTile(
-        leading: const CircleAvatar(
+        leading: CircleAvatar(
           radius: 30,
-          backgroundImage: NetworkImage('image.url'),
+          backgroundImage: NetworkImage(fetchList.avatar),
         ),
         title: Text('${fetchList.first_name} ${fetchList.last_name}'),
         subtitle: const Text('fetchList.email'),
